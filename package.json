@@ -1,0 +1,20 @@
+{
+  "name": "healthcore-monorepo",
+  "version": "0.0.1",
+  "private": true,
+  "workspaces": ["packages/shared"],
+  "engines": { "node": ">=22.13.0" },
+  "scripts": {
+    "lint": "eslint . && markdownlint-cli2 AGENTS.md BRIEFING.md CONTEXT.md CONTEXT.es.md 'memory-bank/*.md' '.agents/rules/*.md' '.agents/skills/*/SKILL.md'",
+    "test": "node --test scripts/agent-infrastructure.test.mjs && tsc --noEmit --strict --target ES2022 --module NodeNext --moduleResolution NodeNext scripts/shared-types.test.ts",
+    "build": "tsc --project tsconfig.build.json"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.13.0",
+    "markdownlint-cli2": "^0.24.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.0.0",
+    "yaml": "^2.0.0"
+  }
+}

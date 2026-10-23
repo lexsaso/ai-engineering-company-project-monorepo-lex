@@ -1,16 +1,23 @@
-# Your company context
+# GlobalHealth Solutions - Proyecto HealthCore
 
-**Replace this content** with the CONTEXT for your assigned company:
+## Fuente y alcance
 
-- **Brasaland** — `brasaland-BRIEFING.md` (grilled food restaurant chain, Colombia + Florida)
-- **TrackFlow** — `trackflow-BRIEFING.md` (last-mile delivery and warehouse, US + Spain)
-- **Nexova** — `nexova-BRIEFING.md` (HR consulting and talent acquisition, Spain + US)
-- **HealthCore** — `healthcore-BRIEFING.md` (outpatient healthcare clinic network, US + UK)
+Contexto aportado por el desarrollador el 2026-10-23 y confirmado para sustituir la plantilla. GlobalHealth Solutions es la empresa seleccionada; HealthCore es el proyecto o agente. No constituye un perfil corporativo oficial verificado ni una certificación médica.
 
-Project statements will point you to the correct context file. Use its contents to build your project context here so that all project work and AI coding agents use the same domain data, field names, and constraints. Avoid copying and pasting the content; use your agents first.
+## Elección de empresa
 
----
+Elección de Empresa: GlobalHealth Solutions
 
-_Until you add your context, keep this placeholder so the repo structure is clear._
+¿Por qué elegí esta empresa? He seleccionado a GlobalHealth Solutions porque su enfoque en la modernización de infraestructuras sanitarias mediante IA es el ecosistema ideal para el desarrollo de HealthCore. Mi proyecto se centra en la transformación y validación de métricas de salud, lo cual resuelve directamente el problema de fragmentación de datos mencionado en su perfil. Al integrar mi agente en su estructura, podemos garantizar que la información médica sea precisa, estandarizada y útil para la toma de decisiones clínicas inmediatas.
 
-_Estas instrucciones también están disponibles en [español](./CONTEXT.es.md)._
+## Reto de automatización identificado
+
+Me enfocaré en el reto de "Optimización de Diagnósticos y Seguimiento" del Milestone Map. El objetivo es utilizar la lógica de validación de mi agente para asegurar que los informes generados por la IA cumplan con los estándares médicos internacionales antes de llegar al personal sanitario, reduciendo así los errores y el tiempo de respuesta.
+
+## Límites de la información confirmada
+
+El texto anterior expresa la motivación y los objetivos del desarrollador, no resultados demostrados del agente. La precisión clínica, la reducción de errores y tiempos y el cumplimiento de estándares deberán evaluarse antes de afirmarse como garantías.
+
+Quedan pendientes el perfil oficial y el Milestone Map de referencia, los estándares concretos, los criterios y umbrales de validación, los datos e integraciones autorizados, los países de operación y la revisión por personal sanitario. No trasladar a GlobalHealth Solutions los países ni las características de la empresa de ejemplo de la plantilla anterior.
+
+Las copias `BRIEFING.md`, `CONTEXT.md` y `CONTEXT.es.md` deben permanecer sincronizadas.
