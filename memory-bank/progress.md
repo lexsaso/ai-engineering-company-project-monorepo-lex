@@ -1,6 +1,6 @@
 # Progreso de HealthCore
 
-Estado vigente: GlobalHealth Solutions es la empresa y HealthCore el proyecto. El contexto aportado por el desarrollador ya esta documentado; el perfil oficial, los estandares medicos y los criterios de validacion siguen pendientes. Infraestructura tecnica y coherencia documental verificadas con lint, tests y build de salida 0 para el commit solicitado por el desarrollador. Las entradas siguientes conservan decisiones y bloqueos historicos, sustituidos por las entradas posteriores. Publicacion y PR no realizados.
+Estado vigente: GlobalHealth Solutions es la empresa y HealthCore el proyecto. El contexto aportado por el desarrollador ya esta documentado; el perfil oficial, los estandares medicos y los criterios de validacion siguen pendientes. Commit inicial local `1f1d415`. Las cuatro alertas bajas se corrigieron con un override autorizado; instalacion reproducible, seis pruebas, lint, build y auditoria pasan con salida 0, sin vulnerabilidades detectadas. Correccion verificada para el commit adicional solicitado. Las entradas siguientes conservan decisiones y bloqueos historicos, sustituidos por las entradas posteriores. Por decision del desarrollador no se hace push ni PR.
 
 ## 2026-10-23 - Infraestructura inicial de agentes
 
@@ -99,3 +99,16 @@ El desarrollador solicito expresamente realizar el commit en `feature/agent-memo
 - Las cuatro alertas bajas de desarrollo siguen registradas como riesgo pendiente, no como corregidas ni aceptadas. `npm audit` es una comprobacion adicional y no sustituye los controles obligatorios aprobados.
 - El alcance del commit es exclusivamente infraestructura y documentacion. Los criterios clinicos aun no definidos no se implementan ni se presentan como certificados. Siguiente paso: revisar las dependencias pendientes y definir los criterios sanitarios antes de implementar producto.
 - La peticion autoriza preparar staging y crear el commit local; no autoriza push ni apertura de PR. No se modifican las politicas de proteccion.
+
+## 2026-10-23 - Cierre de alertas de dependencias
+
+El desarrollador solicito terminar los pendientes y autorizo explicitamente modificar manifest y lockfile, verificar el override corregido y crear un commit adicional si los controles pasan. Confirmo mantener todo local, sin push ni PR. El arbol estaba limpio despues del commit inicial `1f1d415`.
+
+- Diagnostico: las cuatro alertas bajas procedian de `katex@0.16.47` en la cadena `markdownlint-cli2` -> `markdownlint` -> `micromark-extension-math`. El aviso GHSA-238p-pmpm-9mq7 afecta a versiones inferiores a `0.18.2`.
+- Correccion: override acotado `micromark-extension-math` -> `katex@0.18.2`, sin degradar linters ni cambiar aplicaciones. `npm install --ignore-scripts` actualizo un paquete y el lockfile, con salida 0.
+- Primera validacion: `npm audit`, salida 0 y cero vulnerabilidades; `npm run lint`, salida 0; comprobacion de formulas Markdown inline y bloque a traves de la cadena real del consumidor, aprobada.
+- Incorporada la comprobacion como sexta prueba en la suite existente; verifica tambien que el KaTeX resuelto por el consumidor coincide con el override. Actualizado el contexto tecnico para retirar las alertas como pendientes.
+- Validacion completa: `npm ci --ignore-scripts`, `npm run lint`, `npm test`, `npm run build`, `npm audit` y `git diff --check`, todos con salida 0. Seis pruebas aprobadas, ninguna omitida, comprobaciones TypeScript aprobadas y cero vulnerabilidades detectadas. Se revalidan los controles afectados tras esta actualizacion y el candidato en staging antes del commit adicional autorizado.
+- Candidato acotado a cinco archivos: manifest, lockfile, prueba de infraestructura, contexto tecnico y este progreso. Sin cambios de producto ni contratos compartidos. Revisar la retirada del override cuando el consumidor adopte la version corregida de KaTeX en su rango declarado.
+- Pendientes externos, no falsamente cerrados: perfil oficial y Milestone Map, estandares medicos concretos, umbrales, datos autorizados, paises y revision sanitaria. Se necesitan aportaciones del desarrollador o del responsable sanitario; no bloquean una correccion de infraestructura sin codigo clinico.
+- Publicacion: diferida expresamente por el desarrollador. No crear push, PR ni aplicaciones nuevas como parte de este cierre.

@@ -27,9 +27,9 @@ No incluir datos reales de pacientes ni secretos en ejemplos, memoria o commits.
 El alcance aprobado por el desarrollador es verificar la infraestructura existente, sin crear aplicaciones:
 
 - `npm run lint`: ESLint para JavaScript/TypeScript y markdownlint para las fuentes de contexto y los documentos de soporte del agente.
-- `npm test`: cinco pruebas de Node.js sobre documentos, sincronizacion de las tres fuentes, identidad de empresa y proyecto, enlaces, protocolo y YAML de la skill, ademas de comprobaciones compilables del contrato TypeScript existente.
+- `npm test`: seis pruebas de Node.js sobre documentos, sincronizacion de las tres fuentes, identidad de empresa y proyecto, enlaces, protocolo, YAML de la skill y compatibilidad de formulas Markdown, ademas de comprobaciones compilables del contrato TypeScript existente.
 - `npm run build`: compilacion real de las declaraciones de `packages/shared/types/` en `.build/shared/`, sin modificar los contratos fuente.
-- `npm audit`: control adicional de dependencias de desarrollo. Quedan cuatro alertas bajas transitivas vinculadas a KaTeX; no se ha forzado una version fuera del rango declarado por su consumidor ni degradado el linter para ocultarlas.
+- `npm audit`: control adicional de dependencias de desarrollo. Las cuatro alertas bajas de KaTeX se corrigieron con autorizacion explicita del desarrollador mediante un override limitado a `micromark-extension-math` con `katex@0.18.2`; auditoria con salida 0 y cero vulnerabilidades. No se degrado markdownlint. El override cruza el rango declarado por su consumidor, por lo que se comprueba la resolucion real de la dependencia y el renderizado de formulas en linea y bloque en una prueba de regresion. Revisar su retirada cuando el consumidor adopte una version corregida compatible.
 
 La infraestructura tiene verificaciones tecnicas, no suites de frontend o backend: no hay aplicaciones implementadas y los ejemplos Python no tienen suites configuradas. Incorporar controles reales al runner cuando se implementen esos componentes. Los controles actuales verifican coherencia con el contexto aportado, no autenticidad de un perfil corporativo, funcionalidad clinica ni cumplimiento de estandares aun sin identificar.
 

@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
 import test from 'node:test';
@@ -51,6 +52,22 @@ test('the workflow skill has valid YAML metadata and required sections', () => {
   for (const section of ['Objetivo unico', 'Inputs obligatorios', 'Criterios de aceptacion verificables']) {
     assert.ok(content.includes(`## ${section}`), section);
   }
+});
+
+test('the lint dependency chain renders inline and display math with the corrected KaTeX', async () => {
+  const fromCli = createRequire(import.meta.resolve('markdownlint-cli2'));
+  const fromLint = createRequire(fromCli.resolve('markdownlint'));
+  const fromMath = createRequire(fromLint.resolve('micromark-extension-math'));
+  const manifest = JSON.parse(read('package.json'));
+  assert.equal(fromMath('katex').version, manifest.overrides['micromark-extension-math'].katex);
+  const { micromark } = await import(fromLint.resolve('micromark'));
+  const { math, mathHtml } = await import(fromLint.resolve('micromark-extension-math'));
+  const html = micromark('# Formula\n\nInline $x^2$.\n\n$$\n\\frac{1}{2}\n$$\n', {
+    extensions: [math()],
+    htmlExtensions: [mathHtml({ trust: false, throwOnError: true })],
+  });
+  assert.match(html, /class="katex"/);
+  assert.match(html, /katex-display/);
 });
 
 test('the agent protocol names all memory files and required quality commands', () => {
